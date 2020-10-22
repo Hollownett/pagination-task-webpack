@@ -1,0 +1,2168 @@
+/*
+       * In throttle mode, if `delay` time has been exceeded, execute
+       * `callback`.
+       */
+
+/*
+       * In trailing throttle mode, since `delay` time has not been
+       * exceeded, schedule `callback` to execute `delay` ms after most
+       * recent execution.
+       *
+       * If `debounceMode` is true (at begin), schedule `clear` to execute
+       * after `delay` ms.
+       *
+       * If `debounceMode` is false (at end), schedule `callback` to
+       * execute after `delay` ms.
+       */
+
+/*
+       * Since `wrapper` is being called for the first time and
+       * `debounceMode` is true (at begin), execute `callback`.
+       */
+
+/*
+     * If `debounceMode` is true (at begin) this is used to clear the flag
+     * to allow future `callback` executions.
+     */
+
+/*
+   * After wrapper has stopped being called, this timeout ensures that
+   * `callback` is executed at the proper times in `throttle` and `end`
+   * debounce modes.
+   */
+
+/*
+   * The `wrapper` function encapsulates all of the throttling / debouncing
+   * functionality and when executed will limit the rate at which `callback`
+   * is executed.
+   */
+
+/*
+ * This is a dummy function to check if the function name has been altered by minification.
+ * If the function has been minified and NODE_ENV !== 'production', warn the user.
+ */
+
+/*
+ Modernizr 3.0.0pre (Custom Build) | MIT
+*/
+
+/*
+object-assign
+(c) Sindre Sorhus
+@license MIT
+*/
+
+/* Ignore */
+
+/* Z+1 */
+
+/* binding */
+
+/* default */
+
+/* eslint-disable import/no-unresolved */
+
+/* eslint-disable no-undefined,no-param-reassign,no-shadow */
+
+/* eslint-disable no-unused-vars */
+
+/* eslint-disable-next-line jsx-a11y/anchor-has-content */
+
+/* global Reflect, Promise */
+
+/* global __REACT_DEVTOOLS_GLOBAL_HOOK__ */
+
+/* harmony default export */
+
+/* isRoot */
+
+/* module decorator */
+
+/* n */
+
+/* o */
+
+/* webpack/runtime/compat get default export */
+
+/*! *****************************************************************************
+Copyright (c) Microsoft Corporation. All rights reserved.
+Licensed under the Apache License, Version 2.0 (the "License"); you may not use
+this file except in compliance with the License. You may obtain a copy of the
+License at http://www.apache.org/licenses/LICENSE-2.0
+
+THIS CODE IS PROVIDED ON AN *AS IS* BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+KIND, EITHER EXPRESS OR IMPLIED, INCLUDING WITHOUT LIMITATION ANY IMPLIED
+WARRANTIES OR CONDITIONS OF TITLE, FITNESS FOR A PARTICULAR PURPOSE,
+MERCHANTABLITY OR NON-INFRINGEMENT.
+
+See the Apache Version 2.0 License for specific language governing permissions
+and limitations under the License.
+***************************************************************************** */
+
+/*#__PURE__*/
+
+/**
+          Cancels the current effect; this will propagate the cancellation down to any called tasks
+        **/
+
+/**
+          If this Generator has a `return` method then invokes it
+          This will jump to the finally block
+        **/
+
+/**
+          This Generator has ended, terminate the main task and notify the fork queue
+        **/
+
+/**
+          getting TASK_CANCEL automatically cancels the main task
+          We can get this value here
+           - By cancelling the parent task manually
+          - By joining a Cancelled task
+        **/
+
+/**
+       * The minimal observable subscription method.
+       * @param {Object} observer Any object that can be used as an observer.
+       * The observer object should have a `next` method.
+       * @returns {subscription} An object with an `unsubscribe` method that can
+       * be used to unsubscribe the observable from the store, and prevent further
+       * emission of values from the observable.
+       */
+
+/**
+      each effect runner must attach its own logic of cancellation to the provided callback
+      it allows this generator to propagate cancellation downward.
+       ATTENTION! effect runners must setup the cancel logic by setting cb.cancel = [cancelMethod]
+      And the setup must occur before calling the callback
+       This is a sort of inversion of control: called async functions are responsible
+      of completing the flow by calling the provided continuation; while caller functions
+      are responsible for aborting the current flow by calling the attached cancel function
+       Library users can attach their own cancellation logic to promises by defining a
+      promise[CANCEL] method in their returned promises
+      ATTENTION! calling cancel must have no effect on an already completed or cancelled effect
+    **/
+
+/**
+    * Determine if a URL shares the same origin as the current location
+    *
+    * @param {String} requestURL The URL to test
+    * @returns {boolean} True if URL shares the same origin, otherwise false
+    */
+
+/**
+    * Parse a URL to discover it's components
+    *
+    * @param {String} url The URL to be parsed
+    * @returns {Object}
+    */
+
+/**
+    Tracks the current effect cancellation
+    Each time the generator progresses. calling runEffect will set a new value
+    on it. It allows propagating cancellation to child effects
+  **/
+
+/**
+    attaches cancellation logic to this task's continuation
+    this will permit cancellation to propagate down the call chain
+  **/
+
+/**
+    cancellation of the main task. We'll simply resume the Generator with a TASK_CANCEL
+  **/
+
+/**
+   * @return {null}
+   */
+
+/**
+   * A timeout in milliseconds to abort a request. If set to 0 (default) a
+   * timeout is not created.
+   */
+
+/**
+   * Adds a change listener. It will be called any time an action is dispatched,
+   * and some part of the state tree may potentially have changed. You may then
+   * call `getState()` to read the current state tree inside the callback.
+   *
+   * You may call `dispatch()` from a change listener, with the following
+   * caveats:
+   *
+   * 1. The subscriptions are snapshotted just before every `dispatch()` call.
+   * If you subscribe or unsubscribe while the listeners are being invoked, this
+   * will not have any effect on the `dispatch()` that is currently in progress.
+   * However, the next `dispatch()` call, whether nested or not, will use a more
+   * recent snapshot of the subscription list.
+   *
+   * 2. The listener should not expect to see all state changes, as the state
+   * might have been updated multiple times during a nested `dispatch()` before
+   * the listener is called. It is, however, guaranteed that all subscribers
+   * registered before the `dispatch()` started will be called with the latest
+   * state by the time it exits.
+   *
+   * @param {Function} listener A callback to be invoked on every dispatch.
+   * @returns {Function} A function to remove this change listener.
+   */
+
+/**
+   * Dispatches an action. It is the only way to trigger a state change.
+   *
+   * The `reducer` function, used to create the store, will be called with the
+   * current state tree and the given `action`. Its return value will
+   * be considered the **next** state of the tree, and the change listeners
+   * will be notified.
+   *
+   * The base implementation only supports plain object actions. If you want to
+   * dispatch a Promise, an Observable, a thunk, or something else, you need to
+   * wrap your store creating function into the corresponding middleware. For
+   * example, see the documentation for the `redux-thunk` package. Even the
+   * middleware will eventually dispatch plain object actions using this method.
+   *
+   * @param {Object} action A plain object representing “what changed”. It is
+   * a good idea to keep actions serializable so you can record and replay user
+   * sessions, or use the time travelling `redux-devtools`. An action must have
+   * a `type` property which may not be `undefined`. It is a good idea to use
+   * string constants for action types.
+   *
+   * @returns {Object} For convenience, the same action object you dispatched.
+   *
+   * Note that, if you use a custom middleware, it may wrap `dispatch()` to
+   * return something else (for example, a Promise you can await).
+   */
+
+/**
+   * Interoperability point for observable/reactive libraries.
+   * @returns {observable} A minimal observable of state changes.
+   * For more information, see the observable proposal:
+   * https://github.com/tc39/proposal-observable
+   */
+
+/**
+   * Reads the state tree managed by the store.
+   *
+   * @returns {any} The current state tree of your application.
+   */
+
+/**
+   * Replaces the reducer currently used by the store to calculate the state.
+   *
+   * You might need this if your app implements code splitting and you want to
+   * load some of the reducers dynamically. You might also need this if you
+   * implement a hot reloading mechanism for Redux.
+   *
+   * @param {Function} nextReducer The reducer for the store to use instead.
+   * @returns {void}
+   */
+
+/**
+   * This is the generator driver
+   * It's a recursive async/continuation function which calls itself
+   * until the generator terminates or throws
+   * @param {internal commands(TASK_CANCEL | TERMINATE) | any} arg - value, generator will be resumed with.
+   * @param {boolean} isErr - the flag shows if effect finished with an error
+   *
+   * receives either (command | effect result, false) or (any thrown thing, true)
+   */
+
+/**
+   * This makes a shallow copy of currentListeners so we can use
+   * nextListeners as a temporary list while dispatching.
+   *
+   * This prevents any bugs around consumers calling
+   * subscribe/unsubscribe in the middle of a dispatch.
+   */
+
+/**
+   Creates a new task descriptor for this generator.
+   A task is the aggregation of it's mainTask and all it's forked tasks.
+   **/
+
+/**
+   Schedule the put in case another saga is holding a lock.
+   The put will be executed atomically. ie nested puts will execute after
+   this put has terminated.
+   **/
+
+/**
+   This may be called by a parent generator to trigger/propagate cancellation
+   cancel all pending tasks (including the main task), then end the current task.
+    Cancellation propagates down to the whole execution tree held by this Parent task
+   It's also propagated to all joiners of this task and their execution tree/joiners
+    Cancellation is noop for terminated/Cancelled tasks tasks
+   **/
+
+/**
+  Executes a task 'atomically'. Tasks scheduled during this execution will be queued
+  and flushed after this task has finished (assuming the scheduler endup in a released
+  state).
+**/
+
+/**
+  Executes or queues a task depending on the state of the scheduler (`suspended` or `released`)
+**/
+
+/**
+  Puts the scheduler in a `released` state.
+**/
+
+/**
+  Puts the scheduler in a `suspended` state. Scheduled tasks will be queued until the
+  scheduler is released.
+**/
+
+/**
+  Releases the current lock. Executes all queued tasks if the scheduler is in the released state.
+**/
+
+/**
+  Variable to hold a counting semaphore
+  - Incrementing adds a lock and puts the scheduler in a `suspended` state (if it's not
+    already suspended)
+  - Decrementing releases a lock. Zero locks puts the scheduler in a `released` state. This
+    triggers flushing the queued tasks.
+**/
+
+/**
+ * @param {any} obj The object to inspect.
+ * @returns {boolean} True if the argument appears to be a plain object.
+ */
+
+/**
+ * A <Link> wrapper that knows if it's "active" or not.
+ */
+
+/**
+ * A `CancelToken` is an object that can be used to request cancellation of an operation.
+ *
+ * @class
+ * @param {Function} executor The executor function.
+ */
+
+/**
+ * A `Cancel` is an object that is thrown when an operation is canceled.
+ *
+ * @class
+ * @param {string=} message The message.
+ */
+
+/**
+ * A hook to access the redux `dispatch` function.
+ *
+ * @returns {any|function} redux store's `dispatch` function
+ *
+ * @example
+ *
+ * import React, { useCallback } from 'react'
+ * import { useDispatch } from 'react-redux'
+ *
+ * export const CounterComponent = ({ value }) => {
+ *   const dispatch = useDispatch()
+ *   const increaseCounter = useCallback(() => dispatch({ type: 'increase-counter' }), [])
+ *   return (
+ *     <div>
+ *       <span>{value}</span>
+ *       <button onClick={increaseCounter}>Increase counter</button>
+ *     </div>
+ *   )
+ * }
+ */
+
+/**
+ * A hook to access the redux store's state. This hook takes a selector function
+ * as an argument. The selector is called with the store state.
+ *
+ * This hook takes an optional equality comparison function as the second parameter
+ * that allows you to customize the way the selected state is compared to determine
+ * whether the component needs to be re-rendered.
+ *
+ * @param {Function} selector the selector function
+ * @param {Function=} equalityFn the function that will be used to determine equality
+ *
+ * @returns {any} the selected state
+ *
+ * @example
+ *
+ * import React from 'react'
+ * import { useSelector } from 'react-redux'
+ *
+ * export const CounterComponent = () => {
+ *   const counter = useSelector(state => state.counter)
+ *   return <div>{counter}</div>
+ * }
+ */
+
+/**
+ * A hook to access the redux store.
+ *
+ * @returns {any} the redux store
+ *
+ * @example
+ *
+ * import React from 'react'
+ * import { useStore } from 'react-redux'
+ *
+ * export const ExampleComponent = () => {
+ *   const store = useStore()
+ *   return <div>{store.getState()}</div>
+ * }
+ */
+
+/**
+ * A hook to access the value of the `ReactReduxContext`. This is a low-level
+ * hook that you should usually not need to call directly.
+ *
+ * @returns {any} the value of the `ReactReduxContext`
+ *
+ * @example
+ *
+ * import React from 'react'
+ * import { useReduxContext } from 'react-redux'
+ *
+ * export const CounterComponent = ({ value }) => {
+ *   const { store } = useReduxContext()
+ *   return <div>{store.getState()}</div>
+ * }
+ */
+
+/**
+ * Accepts varargs expecting each argument to be an object, then
+ * immutably merges the properties of each object and returns result.
+ *
+ * When multiple objects contain the same key the later object in
+ * the arguments list will take precedence.
+ *
+ * Example:
+ *
+ * ```js
+ * var result = merge({foo: 123}, {foo: 456});
+ * console.log(result.foo); // outputs 456
+ * ```
+ *
+ * @param {Object} obj1 Object to merge
+ * @returns {Object} Result of all merge properties
+ */
+
+/**
+ * Add a new interceptor to the stack
+ *
+ * @param {Function} fulfilled The function to handle `then` for a `Promise`
+ * @param {Function} rejected The function to handle `reject` for a `Promise`
+ *
+ * @return {Number} An ID used to remove interceptor later
+ */
+
+/**
+ * Attach the keys as a property of the regexp.
+ *
+ * @param  {!RegExp} re
+ * @param  {Array}   keys
+ * @return {!RegExp}
+ */
+
+/**
+ * Build a URL by appending params to the end
+ *
+ * @param {string} url The base of the url (e.g., http://www.google.com)
+ * @param {object} [params] The params to be appended
+ * @returns {string} The formatted url
+ */
+
+/**
+ * Camelcase splitter.
+ */
+
+/**
+ * Compile a string to a template function for the path.
+ *
+ * @param  {string}             str
+ * @param  {Object=}            options
+ * @return {!function(Object=, Object=)}
+ */
+
+/**
+ * Composes single-argument functions from right to left. The rightmost
+ * function can take multiple arguments as it provides the signature for
+ * the resulting composite function.
+ *
+ * @param {...Function} funcs The functions to compose.
+ * @returns {Function} A function obtained by composing the argument functions
+ * from right to left. For example, compose(f, g, h) is identical to doing
+ * (...args) => f(g(h(...args))).
+ */
+
+/**
+ * Config-specific merge-function which creates a new config-object
+ * by merging two configuration objects together.
+ *
+ * @param {Object} config1
+ * @param {Object} config2
+ * @returns {Object} New object resulting from merging config2 to config1
+ */
+
+/**
+ * Convert a `string` to camel case.
+ *
+ * @param {String} string
+ * @return {String}
+ */
+
+/**
+ * Convert a `string` to space case.
+ *
+ * @param {String} string
+ * @return {String}
+ */
+
+/**
+ * Copyright (c) 2013-present, Facebook, Inc.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+/**
+ * Copyright (c) 2014-present, Facebook, Inc.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+/**
+ * Copyright 2015, Yahoo! Inc.
+ * Copyrights licensed under the New BSD License. See the accompanying LICENSE file for terms.
+ */
+
+/**
+ * Create a new instance of Axios
+ *
+ * @param {Object} instanceConfig The default config for the instance
+ */
+
+/**
+ * Create a path regexp from string input.
+ *
+ * @param  {string}  path
+ * @param  {!Array}  keys
+ * @param  {!Object} options
+ * @return {!RegExp}
+ */
+
+/**
+ * Create an Error with the specified message, config, error code, request and response.
+ *
+ * @param {string} message The error message.
+ * @param {Object} config The config.
+ * @param {string} [code] The error code (for example, 'ECONNABORTED').
+ * @param {Object} [request] The request.
+ * @param {Object} [response] The response.
+ * @returns {Error} The created error.
+ */
+
+/**
+ * Create an instance of Axios
+ *
+ * @param {Object} defaultConfig The default config for the instance
+ * @return {Axios} A new instance of Axios
+ */
+
+/**
+ * Creates a Redux store that holds the state tree.
+ * The only way to change the data in the store is to call `dispatch()` on it.
+ *
+ * There should only be a single store in your app. To specify how different
+ * parts of the state tree respond to actions, you may combine several reducers
+ * into a single reducer function by using `combineReducers`.
+ *
+ * @param {Function} reducer A function that returns the next state tree, given
+ * the current state tree and the action to handle.
+ *
+ * @param {any} [preloadedState] The initial state. You may optionally specify it
+ * to hydrate the state from the server in universal apps, or to restore a
+ * previously serialized user session.
+ * If you use `combineReducers` to produce the root reducer function, this must be
+ * an object with the same shape as `combineReducers` keys.
+ *
+ * @param {Function} [enhancer] The store enhancer. You may optionally specify it
+ * to enhance the store with third-party capabilities such as middleware,
+ * time travel, persistence, etc. The only store enhancer that ships with Redux
+ * is `applyMiddleware()`.
+ *
+ * @returns {Store} A Redux store that lets you read the state, dispatch actions
+ * and subscribe to changes.
+ */
+
+/**
+ * Creates a history object that stores locations in memory.
+ */
+
+/**
+ * Creates a history object that uses the HTML5 history API including
+ * pushState, replaceState, and the popstate event.
+ */
+
+/**
+ * Creates a new URL by combining the baseURL with the requestedURL,
+ * only when the requestedURL is not already an absolute URL.
+ * If the requestURL is absolute, this function returns the requestedURL untouched.
+ *
+ * @param {string} baseURL The base URL
+ * @param {string} requestedURL Absolute or relative URL to combine
+ * @returns {string} The combined full path
+ */
+
+/**
+ * Creates a new URL by combining the specified URLs
+ *
+ * @param {string} baseURL The base URL
+ * @param {string} relativeURL The relative URL
+ * @returns {string} The combined URL
+ */
+
+/**
+ * Creates a store enhancer that applies middleware to the dispatch method
+ * of the Redux store. This is handy for a variety of tasks, such as expressing
+ * asynchronous actions in a concise manner, or logging every action payload.
+ *
+ * See `redux-thunk` package as an example of the Redux middleware.
+ *
+ * Because middleware is potentially asynchronous, this should be the first
+ * store enhancer in the composition chain.
+ *
+ * Note that each middleware will be given the `dispatch` and `getState` functions
+ * as named arguments.
+ *
+ * @param {...Function} middlewares The middleware chain to be applied.
+ * @returns {Function} A store enhancer applying the middleware.
+ */
+
+/**
+ * Determine if a value is a Blob
+ *
+ * @param {Object} val The value to test
+ * @returns {boolean} True if value is a Blob, otherwise false
+ */
+
+/**
+ * Determine if a value is a Buffer
+ *
+ * @param {Object} val The value to test
+ * @returns {boolean} True if value is a Buffer, otherwise false
+ */
+
+/**
+ * Determine if a value is a Date
+ *
+ * @param {Object} val The value to test
+ * @returns {boolean} True if value is a Date, otherwise false
+ */
+
+/**
+ * Determine if a value is a File
+ *
+ * @param {Object} val The value to test
+ * @returns {boolean} True if value is a File, otherwise false
+ */
+
+/**
+ * Determine if a value is a FormData
+ *
+ * @param {Object} val The value to test
+ * @returns {boolean} True if value is an FormData, otherwise false
+ */
+
+/**
+ * Determine if a value is a Function
+ *
+ * @param {Object} val The value to test
+ * @returns {boolean} True if value is a Function, otherwise false
+ */
+
+/**
+ * Determine if a value is a Number
+ *
+ * @param {Object} val The value to test
+ * @returns {boolean} True if value is a Number, otherwise false
+ */
+
+/**
+ * Determine if a value is a Stream
+ *
+ * @param {Object} val The value to test
+ * @returns {boolean} True if value is a Stream, otherwise false
+ */
+
+/**
+ * Determine if a value is a String
+ *
+ * @param {Object} val The value to test
+ * @returns {boolean} True if value is a String, otherwise false
+ */
+
+/**
+ * Determine if a value is a URLSearchParams object
+ *
+ * @param {Object} val The value to test
+ * @returns {boolean} True if value is a URLSearchParams object, otherwise false
+ */
+
+/**
+ * Determine if a value is a plain Object
+ *
+ * @param {Object} val The value to test
+ * @return {boolean} True if value is a plain Object, otherwise false
+ */
+
+/**
+ * Determine if a value is a view on an ArrayBuffer
+ *
+ * @param {Object} val The value to test
+ * @returns {boolean} True if value is a view on an ArrayBuffer, otherwise false
+ */
+
+/**
+ * Determine if a value is an Array
+ *
+ * @param {Object} val The value to test
+ * @returns {boolean} True if value is an Array, otherwise false
+ */
+
+/**
+ * Determine if a value is an ArrayBuffer
+ *
+ * @param {Object} val The value to test
+ * @returns {boolean} True if value is an ArrayBuffer, otherwise false
+ */
+
+/**
+ * Determine if a value is an Object
+ *
+ * @param {Object} val The value to test
+ * @returns {boolean} True if value is an Object, otherwise false
+ */
+
+/**
+ * Determine if a value is undefined
+ *
+ * @param {Object} val The value to test
+ * @returns {boolean} True if the value is undefined, otherwise false
+ */
+
+/**
+ * Determine if we're running in a standard browser environment
+ *
+ * This allows axios to run in a web worker, and react-native.
+ * Both environments support XMLHttpRequest, but not fully standard globals.
+ *
+ * web workers:
+ *  typeof window -> undefined
+ *  typeof document -> undefined
+ *
+ * react-native:
+ *  navigator.product -> 'ReactNative'
+ * nativescript
+ *  navigator.product -> 'NativeScript' or 'NS'
+ */
+
+/**
+ * Determines whether the specified URL is absolute
+ *
+ * @param {string} url The URL to test
+ * @returns {boolean} True if the specified URL is absolute, otherwise false
+ */
+
+/**
+ * Dispatch a request
+ *
+ * @param {Object} config The config specific for this request (merged with this.defaults)
+ */
+
+/**
+ * Dispatch a request to the server using the configured adapter.
+ *
+ * @param {object} config The config that is to be used for the request
+ * @returns {Promise} The Promise to be fulfilled
+ */
+
+/**
+ * Encode the asterisk parameter. Similar to `pretty`, but allows slashes.
+ *
+ * @param  {string}
+ * @return {string}
+ */
+
+/**
+ * Escape a regular expression string.
+ *
+ * @param  {string} str
+ * @return {string}
+ */
+
+/**
+ * Escape the capturing group by escaping special characters and meaning.
+ *
+ * @param  {string} group
+ * @return {string}
+ */
+
+/**
+ * Export.
+ */
+
+/**
+ * Expose `pathToRegexp`.
+ */
+
+/**
+ * Expose a function for taking tokens and returning a RegExp.
+ *
+ * @param  {!Array}          tokens
+ * @param  {(Array|Object)=} keys
+ * @param  {Object=}         options
+ * @return {!RegExp}
+ */
+
+/**
+ * Expose a method for transforming tokens into the path function.
+ */
+
+/**
+ * Extends object a by mutably adding to it the properties of object b.
+ *
+ * @param {Object} a The object to be extended
+ * @param {Object} b The object to copy properties from
+ * @param {Object} thisArg The object to bind function to
+ * @return {Object} The resulting value of object a
+ */
+
+/**
+ * Get the flags for a regexp from the options.
+ *
+ * @param  {Object} options
+ * @return {string}
+ */
+
+/**
+ * Hook factory, which creates a `useDispatch` hook bound to a given context.
+ *
+ * @param {React.Context} [context=ReactReduxContext] Context passed to your `<Provider>`.
+ * @returns {Function} A `useDispatch` hook bound to the specified context.
+ */
+
+/**
+ * Hook factory, which creates a `useSelector` hook bound to a given context.
+ *
+ * @param {React.Context} [context=ReactReduxContext] Context passed to your `<Provider>`.
+ * @returns {Function} A `useSelector` hook bound to the specified context.
+ */
+
+/**
+ * Hook factory, which creates a `useStore` hook bound to a given context.
+ *
+ * @param {React.Context} [context=ReactReduxContext] Context passed to your `<Provider>`.
+ * @returns {Function} A `useStore` hook bound to the specified context.
+ */
+
+/**
+ * Iterate over all the registered interceptors
+ *
+ * This method is particularly useful for skipping over any
+ * interceptors that may have become `null` calling `eject`.
+ *
+ * @param {Function} fn The function to call for each interceptor
+ */
+
+/**
+ * Iterate over an Array or an Object invoking a function for each item.
+ *
+ * If `obj` is an Array callback will be called passing
+ * the value, index, and complete array for each item.
+ *
+ * If 'obj' is an Object callback will be called passing
+ * the value, key, and complete object for each property.
+ *
+ * @param {Object|Array} obj The object to iterate
+ * @param {Function} fn The callback to invoke for each item
+ */
+
+/**
+ * Normalize the given path string, returning a regular expression.
+ *
+ * An empty array can be passed in for the keys, which will hold the
+ * placeholder key descriptions. For example, using `/user/:id`, `keys` will
+ * contain `[{ name: 'id', delimiter: '/', optional: false, repeat: false }]`.
+ *
+ * @param  {(string|RegExp|Array)} path
+ * @param  {(Array|Object)=}       keys
+ * @param  {Object=}               options
+ * @return {!RegExp}
+ */
+
+/**
+ * Parse a string for the raw tokens.
+ *
+ * @param  {string}  str
+ * @param  {Object=} options
+ * @return {!Array}
+ */
+
+/**
+ * Parse headers into an object
+ *
+ * ```
+ * Date: Wed, 27 Aug 2014 08:58:49 GMT
+ * Content-Type: application/json
+ * Connection: keep-alive
+ * Transfer-Encoding: chunked
+ * ```
+ *
+ * @param {String} headers Headers needing to be parsed
+ * @returns {Object} Headers parsed into an object
+ */
+
+/**
+ * Prettier encoding of URI path segments.
+ *
+ * @param  {string}
+ * @return {string}
+ */
+
+/**
+ * Prints a warning in the console if it exists.
+ *
+ * @param {String} message The warning message.
+ * @returns {void}
+ */
+
+/**
+ * Public API for matching a URL pathname to a path.
+ */
+
+/**
+ * Pull out keys from a regexp.
+ *
+ * @param  {!RegExp} path
+ * @param  {!Array}  keys
+ * @return {!RegExp}
+ */
+
+/**
+ * Puts the scheduler in a `suspended` state and executes a task immediately.
+ */
+
+/**
+ * Remove an interceptor from the stack
+ *
+ * @param {Number} id The ID that was returned by `use`
+ */
+
+/**
+ * Remove any starting case from a `string`, like camel or snake, but keep
+ * spaces and punctuation that may be important otherwise.
+ *
+ * @param {String} string
+ * @return {String}
+ */
+
+/**
+ * Remove byte order marker. This catches EF BB BF (the UTF-8 BOM)
+ *
+ * @param {string} content with BOM
+ * @return {string} content value without BOM
+ */
+
+/**
+ * Resolve or reject a Promise based on response status.
+ *
+ * @param {Function} resolve A function that resolves the promise.
+ * @param {Function} reject A function that rejects the promise.
+ * @param {object} response The response.
+ */
+
+/**
+ * Returns an object that contains a new `CancelToken` and a function that, when called,
+ * cancels the `CancelToken`.
+ */
+
+/**
+ * Returns true if a given popstate event is an extraneous WebKit event.
+ * Accounts for the fact that Chrome on iOS fires real popstate events
+ * containing undefined state when pressing the back button.
+ */
+
+/**
+ * Returns true if the HTML5 history API is supported. Taken from Modernizr.
+ *
+ * https://github.com/Modernizr/Modernizr/blob/master/LICENSE
+ * https://github.com/Modernizr/Modernizr/blob/master/feature-detects/history.js
+ * changed to avoid false negatives for Windows Phones: https://github.com/reactjs/react-router/issues/586
+ */
+
+/**
+ * Separator splitter.
+ */
+
+/**
+ * Syntactic sugar for invoking a function and expanding an array for arguments.
+ *
+ * Common use case would be to use `Function.prototype.apply`.
+ *
+ *  ```js
+ *  function f(x, y, z) {}
+ *  var args = [1, 2, 3];
+ *  f.apply(null, args);
+ *  ```
+ *
+ * With `spread` this example can be re-written.
+ *
+ *  ```js
+ *  spread(function(x, y, z) {})([1, 2, 3]);
+ *  ```
+ *
+ * @param {Function} callback
+ * @returns {Function}
+ */
+
+/**
+ * Test whether a string is camel-case.
+ */
+
+/**
+ * The main path matching regexp utility.
+ *
+ * @type {RegExp}
+ */
+
+/**
+ * The public API for a <Router> that stores location in memory.
+ */
+
+/**
+ * The public API for a <Router> that uses HTML5 history.
+ */
+
+/**
+ * The public API for a <Router> that uses window.location.hash.
+ */
+
+/**
+ * The public API for matching a single path and rendering.
+ */
+
+/**
+ * The public API for prompting the user before navigating away from a screen.
+ */
+
+/**
+ * The public API for rendering a history-aware <a>.
+ */
+
+/**
+ * The public API for rendering the first <Route> that matches.
+ */
+
+/**
+ * The public top-level API for a "static" <Router>, so-called because it
+ * can't actually change the current location. Instead, it just records
+ * location changes in a context object. Useful mainly in testing and
+ * server-rendering scenarios.
+ */
+
+/**
+ * Throttle execution of a function. Especially useful for rate limiting
+ * execution of handlers on events like resize and scroll.
+ *
+ * @param  {Number}    delay          A zero-or-greater delay in milliseconds. For event callbacks, values around 100 or 250 (or even higher) are most useful.
+ * @param  {Boolean}   [noTrailing]   Optional, defaults to false. If noTrailing is true, callback will only execute every `delay` milliseconds while the
+ *                                    throttled-function is being called. If noTrailing is false or unspecified, callback will be executed one final time
+ *                                    after the last throttled-function call. (After the throttled-function has not been called for `delay` milliseconds,
+ *                                    the internal counter is reset)
+ * @param  {Function}  callback       A function to be executed after delay milliseconds. The `this` context and all arguments are passed through, as-is,
+ *                                    to `callback` when the throttled-function is executed.
+ * @param  {Boolean}   [debounceMode] If `debounceMode` is true (at begin), schedule `clear` to execute after `delay` ms. If `debounceMode` is false (at end),
+ *                                    schedule `callback` to execute after `delay` ms.
+ *
+ * @return {Function}  A new, throttled, function.
+ */
+
+/**
+ * Throws a `Cancel` if cancellation has been requested.
+ */
+
+/**
+ * Transform an array into a regexp.
+ *
+ * @param  {!Array}  path
+ * @param  {Array}   keys
+ * @param  {!Object} options
+ * @return {!RegExp}
+ */
+
+/**
+ * Transform the data for a request or a response
+ *
+ * @param {Object|String} data The data to be transformed
+ * @param {Array} headers The headers for the request or response
+ * @param {Array|Function} fns A single function or Array of functions
+ * @returns {*} The resulting transformed data
+ */
+
+/**
+ * Trim excess whitespace off the beginning and end of a string
+ *
+ * @param {String} str The String to trim
+ * @returns {String} The String freed of excess whitespace
+ */
+
+/**
+ * Turns an object whose values are different reducer functions, into a single
+ * reducer function. It will call every child reducer, and gather their results
+ * into a single state object, whose keys correspond to the keys of the passed
+ * reducer functions.
+ *
+ * @param {Object} reducers An object whose values correspond to different
+ * reducer functions that need to be combined into one. One handy way to obtain
+ * it is to use ES6 `import * as reducers` syntax. The reducers may never return
+ * undefined for any action. Instead, they should return their initial state
+ * if the state passed to them was undefined, and the current state for any
+ * unrecognized action.
+ *
+ * @returns {Function} A reducer function that invokes every reducer inside the
+ * passed object, and builds a state object with the same shape.
+ */
+
+/**
+ * Un-camelcase a `string`.
+ *
+ * @param {String} string
+ * @return {String}
+ */
+
+/**
+ * Un-separate a `string`.
+ *
+ * @param {String} string
+ * @return {String}
+ */
+
+/**
+ * Update an Error with the specified config, error code, and response.
+ *
+ * @param {Error} error The error to update.
+ * @param {Object} config The config.
+ * @param {string} [code] The error code (for example, 'ECONNABORTED').
+ * @param {Object} [request] The request.
+ * @param {Object} [response] The response.
+ * @returns {Error} The error.
+ */
+
+/**
+ * Use invariant() to assert state which your program assumes to be true.
+ *
+ * Provide sprintf-style format (only %s is supported) and arguments
+ * to provide information about what broke and what you were
+ * expecting.
+ *
+ * The invariant message will be stripped in production, but the invariant
+ * will remain to ensure logic does not differ in production.
+ */
+
+/**
+ Used to track a parent task and its forks
+ In the fork model, forked tasks are attached by default to their parent
+ We model this using the concept of Parent task && main Task
+ main task is the main flow of the current Generator, the parent tasks is the
+ aggregation of the main tasks + all its forked tasks.
+ Thus the whole model represents an execution tree with multiple branches (vs the
+ linear execution tree in sequential (non parallel) programming)
+
+ A parent tasks has the following semantics
+ - It completes if all its forks either complete or all cancelled
+ - If it's cancelled, all forks are cancelled as well
+ - It aborts if any uncaught error bubbles up from forks
+ - If it completes, the return value is the one returned by the main task
+ **/
+
+/** @class */
+
+/** @license React v0.20.0
+ * scheduler.production.min.js
+ *
+ * Copyright (c) Facebook, Inc. and its affiliates.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+/** @license React v16.13.1
+ * react-is.production.min.js
+ *
+ * Copyright (c) Facebook, Inc. and its affiliates.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+/** @license React v17.0.0
+ * react-dom.production.min.js
+ *
+ * Copyright (c) Facebook, Inc. and its affiliates.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+/** @license React v17.0.0
+ * react.production.min.js
+ *
+ * Copyright (c) Facebook, Inc. and its affiliates.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+/** @type {!Array} */
+
+/** @type {!Object} */
+
+/** @type {string} */
+
+/** Creates a main task to track the main flow */
+
+/************************************************************************/
+
+/******/
+
+/***/
+
+/*eslint func-names:0*/
+
+/*eslint no-param-reassign:0*/
+
+/*eslint-disable no-console*/
+
+/*global toString:true*/
+
+//
+
+// "/*"            => ["/", undefined, undefined, undefined, undefined, "*"]
+
+// "/:test(\\d+)?" => ["/", "test", "\d+", undefined, "?", undefined]
+
+// "/route(\\d+)"  => [undefined, undefined, undefined, "\d+", undefined, undefined]
+
+// "consumed" by the delegate iterator. If context.method was
+
+// "return" to "throw", let that override the TypeError below.
+
+// "return", allow the original .return call to continue in the
+
+// .constructor.prototype properties for functions that return Generator
+
+// .throw, and .return (see defineIteratorMethods).
+
+// .throw, and .return methods.
+
+// @@iterator function is called on it. Some browsers' implementations of the
+
+// A .throw or .return when the delegate iterator has no .throw
+
+// A Generator should always return itself as the iterator object when the
+
+// A URL is considered absolute if it begins with "<scheme>://" or "//" (protocol-relative URL).
+
+// A hashchange doesn't always == location change.
+
+// About 1.5x faster than the two-arg version of Array#splice()
+
+// Add headers to the request
+
+// Add responseType to request if needed
+
+// Add withCredentials to request if needed
+
+// Add xsrf header
+
+// Allow for axios('example/url'[, config]) a la fetch API
+
+// Allow injecting another batching function later
+
+// Allow use of default import syntax in TypeScript
+
+// Any reducers that existed in both the new and old rootReducer
+
+// Assign the result of the finished delegate to the temporary
+
+// AsyncIterator objects; they just return a Promise for the value of
+
+// Avoid failures from read-only properties
+
+// Avoid propagating failures to Promises returned by later
+
+// Axios
+
+// Be forgiving, per 25.3.3.3.3 of the spec:
+
+// But, this can be suppressed for 'json' type as it can be parsed by default 'transformResponse' function.
+
+// By explicitly using `prop-types` you are opting into new production behavior.
+
+// CONCATENATED MODULE: ./node_modules/@babel/runtime/helpers/esm/extends.js
+
+// CONCATENATED MODULE: ./node_modules/@babel/runtime/helpers/esm/inheritsLoose.js
+
+// CONCATENATED MODULE: ./node_modules/@babel/runtime/helpers/esm/objectWithoutPropertiesLoose.js
+
+// CONCATENATED MODULE: ./node_modules/@emotion/is-prop-valid/dist/is-prop-valid.browser.esm.js
+
+// CONCATENATED MODULE: ./node_modules/@emotion/memoize/dist/memoize.browser.esm.js
+
+// CONCATENATED MODULE: ./node_modules/@emotion/stylis/dist/stylis.browser.esm.js
+
+// CONCATENATED MODULE: ./node_modules/@emotion/unitless/dist/unitless.browser.esm.js
+
+// CONCATENATED MODULE: ./node_modules/@redux-saga/core/dist/io-6de156f3.js
+
+// CONCATENATED MODULE: ./node_modules/@redux-saga/core/dist/redux-saga-core.esm.js
+
+// CONCATENATED MODULE: ./node_modules/@redux-saga/deferred/dist/redux-saga-deferred.esm.js
+
+// CONCATENATED MODULE: ./node_modules/@redux-saga/symbols/dist/redux-saga-symbols.esm.js
+
+// CONCATENATED MODULE: ./node_modules/history/esm/history.js
+
+// CONCATENATED MODULE: ./node_modules/mini-create-react-context/dist/esm/index.js
+
+// CONCATENATED MODULE: ./node_modules/react-infinite-scroll-component/dist/index.es.js
+
+// CONCATENATED MODULE: ./node_modules/react-redux/es/components/Context.js
+
+// CONCATENATED MODULE: ./node_modules/react-redux/es/components/Provider.js
+
+// CONCATENATED MODULE: ./node_modules/react-redux/es/components/connectAdvanced.js
+
+// CONCATENATED MODULE: ./node_modules/react-redux/es/hooks/useDispatch.js
+
+// CONCATENATED MODULE: ./node_modules/react-redux/es/hooks/useReduxContext.js
+
+// CONCATENATED MODULE: ./node_modules/react-redux/es/hooks/useSelector.js
+
+// CONCATENATED MODULE: ./node_modules/react-redux/es/hooks/useStore.js
+
+// CONCATENATED MODULE: ./node_modules/react-redux/es/index.js
+
+// CONCATENATED MODULE: ./node_modules/react-redux/es/utils/batch.js
+
+// CONCATENATED MODULE: ./node_modules/react-redux/es/utils/reactBatchedUpdates.js
+
+// CONCATENATED MODULE: ./node_modules/react-redux/es/utils/useIsomorphicLayoutEffect.js
+
+// CONCATENATED MODULE: ./node_modules/react-router-dom/esm/react-router-dom.js
+
+// CONCATENATED MODULE: ./node_modules/reduce-reducers/es/index.js
+
+// CONCATENATED MODULE: ./node_modules/redux-actions/es/constants.js
+
+// CONCATENATED MODULE: ./node_modules/redux-actions/es/createAction.js
+
+// CONCATENATED MODULE: ./node_modules/redux-actions/es/createActions.js
+
+// CONCATENATED MODULE: ./node_modules/redux-actions/es/handleAction.js
+
+// CONCATENATED MODULE: ./node_modules/redux-actions/es/handleActions.js
+
+// CONCATENATED MODULE: ./node_modules/redux-actions/es/utils/arrayToObject.js
+
+// CONCATENATED MODULE: ./node_modules/redux-actions/es/utils/flattenReducerMap.js
+
+// CONCATENATED MODULE: ./node_modules/redux-actions/es/utils/flattenWhenNode.js
+
+// CONCATENATED MODULE: ./node_modules/redux-actions/es/utils/get.js
+
+// CONCATENATED MODULE: ./node_modules/redux-actions/es/utils/hasGeneratorInterface.js
+
+// CONCATENATED MODULE: ./node_modules/redux-actions/es/utils/isArray.js
+
+// CONCATENATED MODULE: ./node_modules/redux-actions/es/utils/isMap.js
+
+// CONCATENATED MODULE: ./node_modules/redux-actions/es/utils/isNull.js
+
+// CONCATENATED MODULE: ./node_modules/redux-actions/es/utils/isPlainObject.js
+
+// CONCATENATED MODULE: ./node_modules/redux-actions/es/utils/ownKeys.js
+
+// CONCATENATED MODULE: ./node_modules/redux-actions/es/utils/unflattenActionCreators.js
+
+// CONCATENATED MODULE: ./node_modules/redux-saga/dist/redux-saga-core-npm-proxy.esm.js
+
+// CONCATENATED MODULE: ./node_modules/redux-saga/dist/redux-saga-effects-npm-proxy.esm.js
+
+// CONCATENATED MODULE: ./node_modules/resolve-pathname/esm/resolve-pathname.js
+
+// CONCATENATED MODULE: ./node_modules/styled-components/dist/styled-components.browser.esm.js
+
+// CONCATENATED MODULE: ./node_modules/symbol-observable/es/index.js
+
+// CONCATENATED MODULE: ./node_modules/symbol-observable/es/ponyfill.js
+
+// CONCATENATED MODULE: ./node_modules/tiny-invariant/dist/tiny-invariant.esm.js
+
+// CONCATENATED MODULE: ./src/App/App.js
+
+// CONCATENATED MODULE: ./src/App/components.js
+
+// CONCATENATED MODULE: ./src/actions/actions.js
+
+// CONCATENATED MODULE: ./src/components/Films/Films.jsx
+
+// CONCATENATED MODULE: ./src/components/Films/components.js
+
+// CONCATENATED MODULE: ./src/components/Header/components.js
+
+// CONCATENATED MODULE: ./src/components/Planets/Planet/Planet.jsx
+
+// CONCATENATED MODULE: ./src/components/Planets/Planet/components.js
+
+// CONCATENATED MODULE: ./src/components/Planets/Planets.jsx
+
+// CONCATENATED MODULE: ./src/components/Planets/components.js
+
+// CONCATENATED MODULE: ./src/constants/routes.js
+
+// CONCATENATED MODULE: ./src/globalStyles.js
+
+// CONCATENATED MODULE: ./src/index.js
+
+// CONCATENATED MODULE: ./src/reducers/peoplesReducer.js
+
+// CONCATENATED MODULE: ./src/sagas/filmsSaga.js
+
+// CONCATENATED MODULE: ./src/sagas/index.js
+
+// CONCATENATED MODULE: ./src/sagas/planetsSaga.js
+
+// CONCATENATED MODULE: ./src/store.js
+
+// CONCATENATED MODULE: ./src/utils/API.js
+
+// CPS (ie node style functions) can define their own cancellation logic
+
+// CSP to forbid Function, and you're not willing to fix either of those
+
+// Call delegate.iterator[context.method](context.arg) and handle the
+
+// Check if module is in cache
+
+// Clean up request
+
+// Compile all the patterns before compilation.
+
+// Compile all the tokens into regexps.
+
+// Completion callback passed to the appropriate effect runner
+
+// Copy axios.prototype to instance
+
+// Copy context to instance
+
+// Create a new module (and put it into the cache)
+
+// Create the default instance to be exported
+
+// DCE check should happen before ReactDOM bundle executes so that
+
+// Default to a dummy "batch" implementation that just runs the callback
+
+// Define Generator.prototype.{next,throw,return} in terms of the
+
+// Define some constant arrays just to avoid re-creating these
+
+// Define the unified helper method that is used to implement .next,
+
+// Deliberately forget the last sent value so that we don't
+
+// Detect buggy property enumeration order in older V8 versions.
+
+// DevTools can report bad minification during injection.
+
+// DevTools shouldn't crash React, no matter what.
+
+// Dispatch the exception by looping back around to the
+
+// Don't bother if no value provided
+
+// Dummy constructor functions that we use as the .constructor and
+
+// EXPORTS
+
+// EXTERNAL MODULE: ./node_modules/@babel/runtime/helpers/defineProperty.js
+
+// EXTERNAL MODULE: ./node_modules/@babel/runtime/helpers/slicedToArray.js
+
+// EXTERNAL MODULE: ./node_modules/@babel/runtime/helpers/taggedTemplateLiteral.js
+
+// EXTERNAL MODULE: ./node_modules/@babel/runtime/helpers/toConsumableArray.js
+
+// EXTERNAL MODULE: ./node_modules/hoist-non-react-statics/dist/hoist-non-react-statics.cjs.js
+
+// EXTERNAL MODULE: ./node_modules/invariant/browser.js
+
+// EXTERNAL MODULE: ./node_modules/path-to-regexp/index.js
+
+// EXTERNAL MODULE: ./node_modules/prop-types/index.js
+
+// EXTERNAL MODULE: ./node_modules/react-dom/index.js
+
+// EXTERNAL MODULE: ./node_modules/react-loader-spinner/index.js
+
+// EXTERNAL MODULE: ./node_modules/react/index.js
+
+// EXTERNAL MODULE: ./node_modules/to-camel-case/index.js
+
+// Ending with a TASK_CANCEL will propagate the Cancellation to all joiners
+
+// Ensure headers exist
+
+// Ensure the hash is encoded properly before doing anything else.
+
+// Ensure we always have a properly-encoded hash.
+
+// Exception thrown outside of any try block that could handle
+
+// Execute `callback` and update the `lastExec` timestamp.
+
+// Execute the module function
+
+// Execute this callback in next tick so that it does not affect the
+
+// Expected DOMException thrown by browsers not compatible XMLHttpRequest Level 2.
+
+// Expose Axios class to allow class inheritance
+
+// Expose Cancel & CancelToken
+
+// Expose all/spread
+
+// Factory for creating new instances
+
+// Flag the module as loaded
+
+// Flatten headers
+
+// For browsers use XHR adapter
+
+// For the native GeneratorFunction constructor, the best we can
+
+// Force an array if not already something iterable
+
+// Function to cancel next exec
+
+// Function to clear existing timeout
+
+// GenStateExecuting and loop back for another invocation.
+
+// HTTP basic authentication
+
+// Handle browser request cancellation (as opposed to a manual cancellation)
+
+// Handle cancellation
+
+// Handle low level network errors
+
+// Handle progress if needed
+
+// Handle timeout
+
+// Headers whose duplicates are ignored by node
+
+// Helper for defining the .next, .throw, and .return methods of the
+
+// Hook up interceptors middleware
+
+// IE 11 sometimes throws when accessing window.history.state
+
+// IE 8 has a broken Object.defineProperty that only works on DOM objects.
+
+// IE needs attribute set twice to normalize properties
+
+// If a rejected Promise was yielded, throw the rejection back
+
+// If an exception is thrown from innerFn, we leave state ===
+
+// If context.method was "throw" but the delegate handled the
+
+// If enqueue has been called before, then we want to wait until
+
+// If maybeInvokeDelegate(context) changed context.method from
+
+// If outerFn provided and outerFn.prototype is a Generator, then outerFn.prototype instanceof Generator.
+
+// If the delegate iterator has a return method, give it a
+
+// If the dispatched exception was caught by a catch block,
+
+// If the path exists, push it onto the end.
+
+// If the status is CANCELLED, then we do not need to change it here
+
+// Ignore already escaped sequences.
+
+// Ignore extraneous popstate events in WebKit.
+
+// Ignore the finally entry if control is not jumping to a
+
+// Ignore this change; we already setState in push/replace.
+
+// Important!
+
+// In non-strict mode we allow a slash at the end of match. If the path to
+
+// Instead of disabling loose mode we simply disable the warning.
+
+// Instead, we just default to 0 for keys we don't know.
+
+// Instead, we just default to 0 for paths we don't know.
+
+// Iterate over array values
+
+// Iterate over object keys
+
+// Iterate over the tokens and create our regexp string.
+
+// Iterator interface in terms of a single ._invoke method.
+
+// Keep this list in sync with production version in `./factoryWithTypeCheckers.js`.
+
+// Listen for ready state
+
+// Match Express-style parameters and un-named parameters with a prefix
+
+// Match any characters still remaining.
+
+// Match escaped characters that would otherwise appear in future matches.
+
+// Microsoft
+
+// Mimic the behavior of DOM histories by
+
+// Mozilla
+
+// Not all browsers support upload events
+
+// Not sure about the optimal order of these conditions:
+
+// Note that simple async functions are implemented on top of
+
+// Note: ["return"] must be used for ES3 parsing compatibility.
+
+// One-arg form: push(location)
+
+// Otherwise add header to the request
+
+// Preact uses an empty array as children by
+
+// Prepare the response
+
+// Prepend partial segment prefixes.
+
+// Provide aliases for supported request methods
+
+// Public interface
+
+// Push the current path onto the tokens.
+
+// RFC 3986 defines scheme name as a sequence of characters beginning with a letter and followed
+
+// Race Auto cancellation
+
+// Rather than returning an object with a next method, we keep
+
+// React 15 compat
+
+// React currently throws a warning when using useLayoutEffect on the server.
+
+// React v16.11 and below
+
+// React v16.12 and above
+
+// Real errors are hidden from us by the browser
+
+// Regardless of whether this script is executing as a CommonJS module
+
+// Remove Content-Type if data is undefined
+
+// Resetting context._sent for legacy support of Babel's
+
+// Resolve incomplete/relative pathname relative to current location.
+
+// Resume execution at the desired location (see delegateYield).
+
+// Return an iterator with no values.
+
+// Return false from a transition hook to cancel the transition.
+
+// Return the exports of the module
+
+// Return the wrapper function.
+
+// SVG-related properties
+
+// See https://github.com/ReactTraining/history/pull/289
+
+// See https://github.com/facebook/regenerator/issues/274 for more details.
+
+// Send the request
+
+// Set config.method
+
+// Set the request timeout in MS
+
+// Setting context._sent for legacy support of Babel's
+
+// Setting status to CANCELLED does not necessarily mean that the task/iterators are stopped
+
+// Specifically not if we're in a web worker, or react-native.
+
+// Standard
+
+// Standard browser envs have full support of the APIs needed to test
+
+// TODO: If another transition starts while we're still confirming
+
+// TODO: We could probably make this more reliable by
+
+// Test for A's keys different from B.
+
+// The ._invoke method unifies the implementations of the .next,
+
+// The context.catch method must only be called with a location
+
+// The delegate iterator is finished, so forget it and continue with
+
+// The module cache
+
+// The request errored out and we didn't get a response, this will be
+
+// The require function
+
+// The root entry object (effectively a try statement without a catch
+
+// The status here may be RUNNING or CANCELLED
+
+// This action has a similiar effect to ActionTypes.INIT.
+
+// This allows the user to escape special characters that won't transform.
+
+// This environment has a native %IteratorPrototype%; use it instead
+
+// This implementation is based heavily on node's url.parse
+
+// This is a bit of a hack. We have to start listening for location
+
+// This is a polyfill for %IteratorPrototype% for environments that
+
+// This is only done if running in a standard browser environment.
+
+// This is used to make sure we don't warn about the same
+
+// This module should not be running in strict mode, so the above
+
+// To avoid creating an additional object, we just hang the .value
+
+// To get around it, we can conditionally useEffect on the server (no-op) and
+
+// Transform request data
+
+// Transform response data
+
+// Try/catch helper to minimize deoptimizations. Returns a completion
+
+// Two-arg form: push(path, state)
+
+// Use a negative lookahead to match only capturing groups.
+
+// Verify that the code above has been dead code eliminated (DCE'd).
+
+// We are using loose transforms in babel. Here we are trying to convert an
+
+// We can't use window.location.hash here because it's not
+
+// We cannot tell if a hashchange was caused by a PUSH, so we'd
+
+// We cannot tell if a hashchange was caused by a REPLACE, so we'd
+
+// We don't expect any of the above to throw, but better to be safe.
+
+// We get TERMINATE flag, i.e. by taking from a channel that ended using `take` (and not `takem` used to trap End of channels)
+
+// We should still report in case we break this code.
+
+// We use React.Children.forEach instead of React.Children.toArray().find()
+
+// When a store is created, an "INIT" action is dispatched so that every
+
+// When a yielded Promise is resolved, its final value becomes
+
+// When there is no prior location and pathname is empty, set it to /
+
+// With one exception: request that using file: protocol, most browsers
+
+// Within the body of any async function, `await x` is transformed to
+
+// Worker triggering acions
+
+// `hasOwn.call(value, "__await")` to determine if the yielded value is
+
+// `noTrailing` defaults to falsy.
+
+// `undefined` instead of `null` to make default parameter work
+
+// `yield regeneratorRuntime.awrap(x)`, so that the runtime can test
+
+// accidentally pass it on to the delegate.
+
+// all previous Promises have been resolved before calling invoke,
+
+// already have an existing method we want to call, so there's no need
+
+// also ensures that the minifier will not anonymize the function.
+
+// and .done properties off the next function object itself. This
+
+// and optional suffixes. Matches appear as:
+
+// any necessary setup in a predictable way. This predictability
+
+// anything else returned as is
+
+// argument that corresponds to a known catch block.
+
+// array. The problem is that our eslint rules encourage us to prefer
+
+// assignment should always work unless something is misconfigured. Just
+
+// async functions in terms of async generators, it is especially
+
+// available, otherwise a store update may happen between render and the effect,
+
+// based on the height of the pull down element
+
+// best way to handle this.
+
+// by any combination of letters, digits, plus, period, or hyphen.
+
+// by setting cancel field on the cb
+
+// c.f. https://nodejs.org/api/http.html#http_message_headers
+
+// call invoke immediately, without waiting on a callback to fire,
+
+// call the `next` function in the props to trigger the next data fetch
+
+// catch synchronous failures; see #152
+
+// catch synchronous failures; see #152 and #441
+
+// causing a render after a cancelled POP.
+
+// chance to clean up.
+
+// changed
+
+// changes here in the constructor in case there are any <Redirect>s
+
+// component at different URLs.
+
+// consistent across browsers - Firefox will pre-decode it!
+
+// context.dispatchException(context.arg) call above.
+
+// context.method was "next", forget context.arg since it has been
+
+// current iteration.
+
+// default, so use null if that's the case.
+
+// defensive measure
+
+// define getter functions for harmony exports
+
+// delegate iterator, or by modifying context.method and context.arg,
+
+// do is to check its .name property.
+
+// do not bubble up synchronous failures for detached forks
+
+// do nothing when dataLength is unchanged
+
+// don't hoist over string (html) components
+
+// don't natively support it.
+
+// effects in the iterator's finally block will still be executed
+
+// enqueue has not been called before, then it is important to
+
+// eslint-disable-line no-alert
+
+// eslint-disable-line no-new-wrappers
+
+// eslint-disable-next-line no-param-reassign
+
+// eslint-disable-next-line unicorn/prefer-spread
+
+// exception, let the outer generator proceed normally. If
+
+// execute code before the first await. Since we implement simple
+
+// executor callback, and why async functions synchronously
+
+// function.sent implementation.
+
+// functionality of the library.
+
+// get BCR of pullDown element to position it above
+
+// get a new location before the <Router> is mounted.
+
+// getDefaultExport function for compatibility with non-harmony modules
+
+// handled by onerror instead
+
+// has a stable shape and so hopefully should be cheap to allocate.
+
+// have been (and was previously) designed to take a closure to be
+
+// here because toArray adds keys to all child elements and we do not want
+
+// hit reducers
+
+// http://fb.me/prop-types-in-prod
+
+// https://bugs.chromium.org/p/v8/issues/detail?id=3056
+
+// https://bugs.chromium.org/p/v8/issues/detail?id=4118
+
+// https://esbench.com/bench/5bfee68a4cd7e6009ef61d23
+
+// https://people.mozilla.org/~jorendorff/es6-draft.html#sec-generatorresume
+
+// i.e. a generator function returns an iterator
+
+// if a Content Security Policy forbids using Function, but in that case
+
+// ignore everything but left clicks
+
+// important to get this right, even though it requires care.
+
+// in case runtime.js accidentally runs in strict mode, we can escape
+
+// in every case, so we don't have to touch the arguments object. The
+
+// in non-ending mode, where "/test/" shouldn't match "/test//route".
+
+// injected easily by `bin/regenerator --include-runtime script.js`.
+
+// instead create a failed task. See #152 and #441
+
+// interable to an array. Loose mode expects everything to already be an
+
+// into the async generator function so it can be handled there.
+
+// invocations of the iterator.
+
+// invoked without arguments, but in all the cases we care about we
+
+// is created synchronously, otherwise a store update may occur before the
+
+// is re-rendered, the selectors are called again, and
+
+// is that other hash histories in the page will consider it a POP.
+
+// is valid at the end of a path match, not in the middle. This is important
+
+// is why the Promise constructor synchronously invokes its
+
+// it, so set the completion value of the entire function to
+
+// iterator prototype chain incorrectly implement this, causing the Generator
+
+// keeping a list of keys we've seen in sessionStorage.
+
+// keeping a list of paths we've seen in sessionStorage.
+
+// keys multiple times.
+
+// kicks up the generator
+
+// location outside the try/catch block.
+
+// locations where there is no enclosing try statement.
+
+// match already ends with a slash, we remove it for consistency. The slash
+
+// meant to be awaited.
+
+// method always terminates the yield* loop.
+
+// minifier not to mangle the names of these two functions.
+
+// monitors are expected to have a certain interface, let's fill-in any missing ones
+
+// object to not be returned from this call. This ensures that doesn't happen.
+
+// objects. For full spec compliance, you may wish to configure your
+
+// of the polyfill.
+
+// on the initial render. If there are, they will replace/push when
+
+// onClick prevented default
+
+// onerror should only fire if it's a network error
+
+// only additional allocation required is the completion record, which
+
+// or a finally block) gives us a place to store values thrown from
+
+// or not, return the runtime object so that we can declare the variable
+
+// outer generator.
+
+// prettier-ignore
+
+// prevents cancelling an already completed effect
+
+// prevents multiple triggers.
+
+// prevents unnecessary cancellation
+
+// problems, please detail your unique predicament in a GitHub issue.
+
+// propagates cancel downward
+
+// rather setState here and ignore the hashchange. The caveat here
+
+// record like context.tryEntries[i].completion. This interface could
+
+// reducer returns their initial state. This effectively populates
+
+// regeneratorRuntime in the outer scope, which allows this module to be
+
+// resolve iterator
+
+// result, either by returning a { value, done } result from the
+
+// return immediately if the action has already been triggered,
+
+// setting context.delegate to null, and returning the ContinueSentinel.
+
+// setup cancellation logic on the parent cb
+
+// so that results are always delivered in the correct order. If
+
+// so that the async generator function has the opportunity to do
+
+// so you can drag upto 1.5 times of the maxPullDownDistance
+
+// spread over Array.from.
+
+// strict mode using a global Function call. This could conceivably fail
+
+// subscription callback always has the selector from the latest render commit
+
+// subscription is created and an inconsistent state may be observed
+
+// the .value of the Promise<{value,done}> result for the
+
+// the final result produced by the iterator.
+
+// the initial state tree.
+
+// the matched portion of the URL
+
+// the method takes exactly one argument, since that happens to be true
+
+// the new state tree with any relevant data from the old one.
+
+// the outer generator.
+
+// the path used to match
+
+// the previous one, we may end up in a weird state. Figure out the
+
+// the proper solution is to fix the accidental strict mode problem. If
+
+// then let that catch block handle the exception normally.
+
+// then return the task descriptor to the caller
+
+// there can be only a single saga error created at any given moment
+
+// they mount and since cDM fires in children before parents, we may
+
+// things simple and return the next function itself.
+
+// this._infScroll
+
+// throw the exception.
+
+// to create a new function object. We can even get away with assuming
+
+// to is absolute
+
+// to is relative, drop the filename
+
+// to trigger an unmount/remount for two <Route>s that render the same
+
+// tracks down the current cancel
+
+// unified ._invoke helper method.
+
+// update state when new data was sent in
+
+// urlParsingNode provides the UrlUtils interface - http://url.spec.whatwg.org/#urlutils
+
+// useLayoutEffect in the browser. We need useLayoutEffect to ensure the store
+
+// user handled the error, we can clear bookkept values
+
+// user is scrolling down to up
+
+// utils is a library of generic helper functions non-specific to axios
+
+// variable specified by delegate.resultName (see delegateYield).
+
+// variables to keep track of pull down behaviour
+
+// we don't care about invariant's own frame
+
+// we ignore all errors here, since when the component
+
+// we know that it won't be needed anymore and we need to clear it
+
+// we've dumped the saga stack to string and are passing it to user's code
+
+// webpackBootstrap
+
+// whether or not we matched exactly
+
+// whether the request URL is of the same origin as current location.
+
+// which may cause missed updates; we also must ensure the store subscription
+
+// will be populated in componentDidMount
+
+// will receive the previous state. This effectively populates
+
+// will return status as 0 even though it's a successful request
+
+// will throw again, if neither props nor store state
+
+// you've misconfigured your bundler to force strict mode and applied a
+
+//# sourceMappingURL=index.es.js.map
+
+//# sourceMappingURL=react-router.js.map
+
+//# sourceMappingURL=styled-components.browser.esm.js.map
